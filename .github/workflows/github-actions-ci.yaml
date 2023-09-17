@@ -40,7 +40,7 @@ jobs:
         docker image ls
         docker tag ${{secrets.DOCKER_USER}}/orderbird-app ${{secrets.DOCKER_USER}}/orderbird-app:$IMAGE_TAG
         docker image ls
-        docker push ${{secrets.DOCKER_USER}}/orderbird-app
+        docker push ${{secrets.DOCKER_USER}}/orderbird-app:$IMAGE_TAG
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name orderbird
