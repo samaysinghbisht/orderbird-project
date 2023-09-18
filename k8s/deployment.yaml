@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderbird-app
+  namespace: orderbird
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderbird
+  template:
+    metadata:
+      labels:
+        app: orderbird
+    spec:
+      containers:
+      - name: orderbird-app
+        image: samay1993/orderbird-app
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: Always
