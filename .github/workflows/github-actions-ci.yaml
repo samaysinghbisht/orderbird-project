@@ -34,7 +34,7 @@ jobs:
     
     - name: Build, tag, and push docker image to Docker Hub
       run: |
-        IMAGE_TAG=$(date +%s)
+        IMAGE_TAG=v1.1
         echo $IMAGE_TAG
         docker build -t ${{secrets.DOCKER_USER}}/orderbird-app .
         docker tag ${{secrets.DOCKER_USER}}/orderbird-app ${{secrets.DOCKER_USER}}/orderbird-app:$IMAGE_TAG
