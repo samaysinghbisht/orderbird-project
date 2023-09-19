@@ -4,6 +4,25 @@
 2. Have AWS CLI configured
 3. Eksctl should be installed 
 4. Create EKS Cluster by running the command: "eksctl create cluster --name orderbird-cluster --region eu-central-1 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2"
+5. Delete the EKS cluster by running the command: "eksctl delete cluster --region=eu-central-1 --name=orderbird-cluster"
+
+<h3>Run the app locally:</h3>
+
+There are three ways to run the application locally:
+- Run using Python, for that use the command: "flask run --host=0.0.0.0 --port=(port-number)"
+- Run using docker:
+    - Build the image: "docker build -t orderbird .
+    - Run the image in a container with port mapping: "docker run -p (host-port):5000 orderbird-app" 
+    - Access the application on localhost:(host-port)
+- Run using kubernetes:
+    - Use the manifest in k8s folder.
+    - Run below commands:
+        - kubectl apply -f k8s/namespace.yaml
+        - kubectl apply -f k8s/deployment.yaml
+        - kubectl apply -f k8s/service.yaml
+    - Port forward the service to a host port(let's say 4000): 
+        - kubectl port-forward svc/orderbird-service -n orderbird 4000:80
+    - Access the application on locahost:4000
 
 
 Once the cluster is deployed, push the changes to github repo, the pipeline will run automatically.
